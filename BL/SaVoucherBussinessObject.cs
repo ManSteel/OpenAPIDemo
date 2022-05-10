@@ -7,7 +7,7 @@ using WindowsFormsApp1.Interface;
 
 namespace WindowsFormsApp1.BL
 {
-    public class SaVoucherBussinessObject: VoucherBussinessBase, IVoucherBussinessHandle
+    public class SaVoucherBussinessObject: VoucherBussinessBase
     {
     }
 }

@@ -11,28 +11,13 @@ namespace WindowsFormsApp1.Model.Voucher_Model
     /// Đơn đặt hàng
     /// </summary>
     /// Created by: LDLONG 30.4.2022
-    public class sa_order: IVoucher
+    public class sa_order: VoucherObject
     {
         public int voucher_type { get; set; } = 20;
-        public string org_refid { get; set; }
-        public bool is_get_new_id { get; set; } = true;
-        public bool is_allow_group { get; set; } = false;
-        public string org_refno { get; set; }
         public int org_reftype { get; set; } = 3520;
         public string org_reftype_name { get; set; } = "Đơn đặt hàng";
-        public string refno_finance { get; set; }
-        public int act_voucher_type { get; set; } = 0;
-        public Guid refid { get; set; }
         public int reftype { get; set; } = 3520;
-        public bool auto_refno { get; set; } = false;
-        /// <summary>
-        /// Được tạo bởi ai (Trường này để amis accounting quản lý ai tạo không cần đẩy dữ liệu để mặc định Open API)
-        /// </summary>
-        public string created_by { get; set; } = "Open API";
-        /// <summary>
-        /// Ngày tạo (Trường này để amis accounting quản lý ai tạo không cần đẩy dữ liệu để mặc định Open API)
-        /// </summary>
-        public DateTime? created_date { get; set; } = DateTime.Now;
+
         /// <summary>
         /// Địa chỉ giao hàng
         /// </summary>
@@ -60,7 +45,7 @@ namespace WindowsFormsApp1.Model.Voucher_Model
         /// <summary>
         /// Chi nhánh
         /// </summary>
-        public Guid? branch_id { get; set; }
+        public Guid? branch_id { get; set; } = Guid.Empty;
         /// <summary>
         /// ID đơn hàng bên CRM (Để giá trị default)
         /// </summary>

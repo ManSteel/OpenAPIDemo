@@ -59,10 +59,10 @@
     <Compile Include="BL\SaOrderBussinesObject.cs" />
     <Compile Include="BL\SaVoucherBussinessObject.cs" />
     <Compile Include="BL\VoucherBussinessBase.cs" />
-    <Compile Include="Interface\IDictionary.cs" />
+    <Compile Include="Interface\DictionaryObject.cs" />
     <Compile Include="Interface\IVoucherBussinessHandle.cs" />
-    <Compile Include="Interface\IVoucherDetail.cs" />
-    <Compile Include="Interface\IVoucher.cs" />
+    <Compile Include="Interface\VoucherDetailObject.cs" />
+    <Compile Include="Interface\VoucherObject.cs" />
     <Compile Include="Model\Connect\ConnectParam.cs" />
     <Compile Include="Model\Connect\ConnectResult.cs" />
     <Compile Include="Model\Connect\TokenInfo.cs" />

@@ -11,13 +11,9 @@ namespace WindowsFormsApp1.Model.Dictionary_Model
     /// Danh mục đối tượng (Nhà cung cấp, khách hàng, nhân viên)
     /// </summary>
     /// Created by: LDLONG 30.04.2022
-    public class account_object : IDictionary
+    public class account_object : DictionaryObject
     {
         public int dictionary_type { get; set; } = 1;
-        public string created_by { get; set; } = "Open API";
-        public DateTime? created_date { get; set; } = DateTime.Now;
-        public string modified_by { get; set; } = "Open API";
-        public DateTime? modified_date { get; set; } = DateTime.Now;
         public string account_object_bank_account { get; set; }
         public string account_object_code { get; set; }
         public string account_object_group_code_list { get; set; } = null;
@@ -125,10 +121,10 @@ namespace WindowsFormsApp1.Model.Dictionary_Model
         /// </summary>
         public decimal insurance_salary { get; set; } = 0;
         public bool? is_convert { get; set; } = false;
-        public bool? is_customer { get; set; }
-        public bool? is_employee { get; set; }
+        public bool? is_customer { get; set; } = false;
+        public bool? is_employee { get; set; } = false;
         public bool? is_same_address { get; set; }
-        public bool? is_vendor { get; set; }
+        public bool? is_vendor { get; set; } = false;
         public decimal maximize_debt_amount { get; set; } = 0;
         public string mobile { get; set; }
         public int? number_of_dependent { get; set; } = 0;

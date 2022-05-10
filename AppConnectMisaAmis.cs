@@ -21,19 +21,21 @@ namespace WindowsFormsApp1
     {
         private HttpClient _client;
         private string _baseUrl;
+        private string _appId;
         public AppConnectMisaAmis()
         {
             InitializeComponent();
             _client = new HttpClient();
             _baseUrl = "https://actapp.misa.vn"; // Môi trường chính thức
+            _appId = "00000000-0000-0000-0000-000000001002"; // app_id
             //_baseUrl = "https://testactapp.misa.vn"; // Môi trường test
 
         }
 
         /// <summary>
-        /// Tải project về set lại đúng _urlStorage trên máy của mình
+        /// Tải project về set lại đúng _urlStorage trên máy của mình (link folder Data trong trong Source code)
         /// </summary>
-        private string _urlStorage = @"C:\Users\Admin\source\repos\WindowsFormsApp1\Data";
+        private string _urlStorage = @"D:\Project\OpenAPIDemo\OpenAPIDemo\Data";
 
         #region Event handle
         /// <summary>
@@ -120,12 +122,12 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <returns></returns>
         /// Created by: LDLONG 20.03.2022
-        public TokenInfo GetToken()
+        public string GetToken()
         {
             TokenInfo token = new TokenInfo();
-            string tokenInfo = System.IO.File.ReadAllText($"{_urlStorage}\\token_info.json");
-            var param = JsonConvert.DeserializeObject<TokenInfo>(tokenInfo);
-            return token;
+            string tokenInfo = System.IO.File.ReadAllText($"{_urlStorage}\\token_info.txt");
+            var tokenData = JsonConvert.DeserializeObject<TokenInfo>(tokenInfo);
+            return tokenData.access_token;
         }
 
         #endregion
@@ -141,9 +143,27 @@ namespace WindowsFormsApp1
             var vouchertype = this.comboBoxVoucherTye.Text;
             IVoucherBussinessHandle voucherBussiness = InitVoucherBussinessHandle(vouchertype);
             VoucherRequestParam dataVoucher = new VoucherRequestParam();
-            OriginData orgData = new OriginData();
+            dataVoucher.app_id = _appId;
+            OriginData orgData = new OriginData(); //Dữ liệu gốc bên phần mềm thứ 3 dùng để biến đổi thành VoucherRequestParam
             //Khởi tạo dữ liệu danh mục đẩy chứng từ
             voucherBussiness.InitDictionary(dataVoucher, orgData);
+            //Khởi tạo phần thông tin chứng từ
+            voucherBussiness.InitVoucherData(dataVoucher, orgData);
+
+            //Đẩy dữ liệu qua API sang Amis Kế toán
+            SaveVoucherCallAPI(dataVoucher);
+
+        }
+
+        private async Task SaveVoucherCallAPI(VoucherRequestParam dataVoucher)
+        {
+            HttpRequestMessage msg = new HttpRequestMessage();
+            msg.RequestUri = new Uri($"{_baseUrl}/apir/sync/actopen/save");
+            msg.Method = HttpMethod.Post;
+            msg.Headers.Add("X-MISA-AccessToken", GetToken());
+            msg.Content = new StringContent(JsonConvert.SerializeObject(dataVoucher), Encoding.UTF8, "application/json");
+            var reponse = await CallApi(msg);
+            var reponseData = reponse.Content.ReadAsStringAsync().Result;
 
         }
 

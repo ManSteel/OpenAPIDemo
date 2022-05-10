@@ -9,7 +9,7 @@ namespace WindowsFormsApp1.Interface
     /// <summary>
     /// Danh mục đẩy kèm chứng từ (vật tư hàng hóa, khách hàng, nhà cung cấp, nhân viên, đơn vị tính, kho, ...)
     /// </summary>
-    public interface IDictionary
+    public abstract class DictionaryObject
     {
         /// <summary>
         /// 0: Chưa xác định
@@ -24,10 +24,9 @@ namespace WindowsFormsApp1.Interface
         /// 9: Khoản mục chi phí, xem định nghĩa cấu trúc input chi tiết tại: budget_item
         /// 10: Mục thu chi, xem định nghĩa cấu trúc input chi tiết tại: expense_item
         /// </summary>
-        int dictionary_type { get; set; }
-        string created_by { get; set; }
-        DateTime? created_date { get; set; }
-        string modified_by { get; set; }
-        DateTime? modified_date { get; set; }
+        public string created_by { get; set; } = "Open API";
+        public DateTime? created_date { get; set; } = DateTime.Now;
+        public string modified_by { get; set; } = "Open API";
+        public DateTime? modified_date { get; set; } = DateTime.Now;
     }
 }

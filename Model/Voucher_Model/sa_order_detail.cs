@@ -11,10 +11,8 @@ namespace WindowsFormsApp1.Model.Voucher_Model
     /// Thông tin các dòng chi tiết đơn hàng
     /// </summary>
     /// Created by: LDLONG 30.04.2022
-    public class sa_order_detail : IVoucherDetail
+    public class sa_order_detail : VoucherDetailObject
     {
-        public Guid? ref_detail_id { get; set; }
-        public Guid? refid { get; set; }
         public decimal amount { get; set; }
         public decimal amount_oc { get; set; }
         public string crm_id { get; set; }
@@ -27,7 +25,7 @@ namespace WindowsFormsApp1.Model.Voucher_Model
         public bool? is_description { get; set; }
         public string inventory_item_code { get; set; }
         public Guid? inventory_item_id { get; set; }
-        public int inventory_item_name { get; set; }
+        public string inventory_item_name { get; set; }
         public bool? is_promotion { get; set; } = false;
         public decimal last_year_delivered_amount { get; set; }
         public decimal last_year_delivered_amount_oc { get; set; }

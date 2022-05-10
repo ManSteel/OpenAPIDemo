@@ -11,13 +11,9 @@ namespace WindowsFormsApp1.Model.Dictionary_Model
     /// Hàng hóa dịch vụ
     /// </summary>
     /// Created by: LDLONG 30.04.2022
-    public class inventory_item: IDictionary
+    public class inventory_item: DictionaryObject
     {
         public int dictionary_type { get; set; } = 3;
-        public string created_by { get; set; } = "Open API";
-        public DateTime? created_date { get; set; } = DateTime.Now;
-        public string modified_by { get; set; } = "Open API";
-        public DateTime? modified_date { get; set; } = DateTime.Now;
         public string allocation_account { get; set; } = "5111";
         public int? allocation_time { get; set; } = 0;
         /// <summary>

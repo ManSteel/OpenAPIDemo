@@ -25,11 +25,11 @@ namespace WindowsFormsApp1.Model
         /// <summary>
         /// Danh sách các chứng từ đẩy lên
         /// </summary>
-        public List<IVoucher> voucher { get; set; }
+        public List<VoucherObject> voucher { get; set; }
         /// <summary>
         /// Danh sách danh mục đẩy kèm chứng từ
         /// </summary>
-        public List<IDictionary> dictionary { get; set; }
+        public List<DictionaryObject> dictionary { get; set; }
 
     }
 }

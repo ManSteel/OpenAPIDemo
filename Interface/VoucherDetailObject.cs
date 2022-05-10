@@ -10,9 +10,9 @@ namespace WindowsFormsApp1.Interface
     /// Thông tin chi tiết của chứng từ (detail voucher)
     /// </summary>
     /// Created by: LDLONG 30.04.2022
-    public interface IVoucherDetail
+    public abstract class VoucherDetailObject
     {
-        Guid? ref_detail_id { get; set; }
-        Guid? refid { get; set; }
+        public Guid? ref_detail_id { get; set; }
+        public Guid? refid { get; set; }
     }
 }
