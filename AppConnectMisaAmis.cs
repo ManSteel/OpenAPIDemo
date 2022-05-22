@@ -145,16 +145,26 @@ namespace WindowsFormsApp1
             VoucherRequestParam dataVoucher = new VoucherRequestParam();
             dataVoucher.app_id = _appId;
             OriginData orgData = new OriginData(); //Dữ liệu gốc bên phần mềm thứ 3 dùng để biến đổi thành VoucherRequestParam
+
             //Khởi tạo dữ liệu danh mục đẩy chứng từ
             voucherBussiness.InitDictionary(dataVoucher, orgData);
+
             //Khởi tạo phần thông tin chứng từ
             voucherBussiness.InitVoucherData(dataVoucher, orgData);
+
+            //Mapping thông tin danh mục và chứng từ
+            voucherBussiness.MappingIdObjectVoucher(dataVoucher);
 
             //Đẩy dữ liệu qua API sang Amis Kế toán
             SaveVoucherCallAPI(dataVoucher);
 
         }
 
+        /// <summary>
+        /// Call api đẩy dữ liệu chứng từ lên Amis kế toán
+        /// </summary>
+        /// <param name="dataVoucher"></param>
+        /// <returns></returns>
         private async Task SaveVoucherCallAPI(VoucherRequestParam dataVoucher)
         {
             HttpRequestMessage msg = new HttpRequestMessage();
@@ -164,6 +174,7 @@ namespace WindowsFormsApp1
             msg.Content = new StringContent(JsonConvert.SerializeObject(dataVoucher), Encoding.UTF8, "application/json");
             var reponse = await CallApi(msg);
             var reponseData = reponse.Content.ReadAsStringAsync().Result;
+            MessageBox.Show(reponseData);
 
         }
 

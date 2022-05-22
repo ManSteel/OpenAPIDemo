@@ -22,5 +22,13 @@ namespace WindowsFormsApp1.Interface
         /// <param name="dataVoucher"></param>
         /// <param name="orgData"></param>
         void InitVoucherData(VoucherRequestParam dataVoucher, OriginData orgData);
+
+        /// <summary>
+        /// Maping id trong danh mục với các thông tin trong chứng từ dựa vào mã của object
+        /// </summary>
+        /// <param name="dataVoucher"></param>
+        void MappingIdObjectVoucher(VoucherRequestParam dataVoucher);
+
+
     }
 }

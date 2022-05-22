@@ -11,6 +11,7 @@ namespace WindowsFormsApp1.BL
 {
     public class VoucherBussinessBase: IVoucherBussinessHandle
     {
+
         /// <summary>
         /// Khởi tạo dữ liệu danh mục đẩy sang phần mềm kế toán
         /// Overide để maping dữ liệu đặc thù theo từng loại chứng từ
@@ -81,8 +82,9 @@ namespace WindowsFormsApp1.BL
             
         }
 
-
-
-
+        public virtual void MappingIdObjectVoucher(VoucherRequestParam dataVoucher)
+        {
+            
+        }
     }
 }

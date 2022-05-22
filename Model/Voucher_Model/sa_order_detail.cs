@@ -13,11 +13,23 @@ namespace WindowsFormsApp1.Model.Voucher_Model
     /// Created by: LDLONG 30.04.2022
     public class sa_order_detail : VoucherDetailObject
     {
+        /// <summary>
+        /// Thành tiền quy đổi
+        /// </summary>
         public decimal amount { get; set; }
+        /// <summary>
+        /// Thành tiền nguyên tệ
+        /// </summary>
         public decimal amount_oc { get; set; }
         public string crm_id { get; set; }
         public string description { get; set; }
+        /// <summary>
+        /// Tiền chiết khấu quy đổi
+        /// </summary>
         public decimal discount_amount { get; set; }
+        /// <summary>
+        /// Tiền chiết khấu nguyên tệ
+        /// </summary>
         public decimal discount_amount_oc { get; set; }
         public decimal discount_rate { get; set; }
         public string exchange_rate_operator { get; set; } = "*";
@@ -59,8 +71,17 @@ namespace WindowsFormsApp1.Model.Voucher_Model
         public string unit_name { get; set; }
         public decimal unit_price { get; set; }
         public decimal unit_price_after_tax { get; set; }
+        /// <summary>
+        /// Tiền thuế GTGT quy đổi
+        /// </summary>
         public decimal vat_amount { get; set; }
+        /// <summary>
+        /// Tiền thuế GTGT nguyên tệ
+        /// </summary>
         public decimal vat_amount_oc { get; set; }
+        /// <summary>
+        /// Tỷ lệ % thuế GTGT
+        /// </summary>
         public decimal vat_rate { get; set; }
 
 
