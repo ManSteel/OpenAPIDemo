@@ -17,6 +17,11 @@ using WindowsFormsApp1.Model;
 
 namespace WindowsFormsApp1
 {
+    /// <summary>
+    /// App demo Open API Amis kế toán
+    /// </summary>
+    /// Created by: LDLONG 
+    /// Email: longdinh157@gmail.com
     public partial class AppConnectMisaAmis : Form
     {
         private HttpClient _client;
@@ -141,6 +146,12 @@ namespace WindowsFormsApp1
         private void PushVoucherDataAmisAccounting(object sender, EventArgs e)
         {
             var vouchertype = this.comboBoxVoucherTye.Text;
+            if (string.IsNullOrEmpty(vouchertype))
+            {
+                MessageBox.Show("Bạn chưa chọn loại chứng từ");
+                return;
+            }
+
             IVoucherBussinessHandle voucherBussiness = InitVoucherBussinessHandle(vouchertype);
             VoucherRequestParam dataVoucher = new VoucherRequestParam();
             dataVoucher.app_id = _appId;
@@ -195,7 +206,7 @@ namespace WindowsFormsApp1
                     voucherBussiness = new SaVoucherBussinessObject();
                     break;
                 case "Chứng từ mua hàng":
-                    voucherBussiness = new SaVoucherBussinessObject();
+                    voucherBussiness = new PuVoucherBussinessObject();
                     break;
                 default:
                     break;
