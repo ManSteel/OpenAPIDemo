@@ -176,6 +176,7 @@ namespace WindowsFormsApp1.Model.Voucher_Model
         public decimal total_vat_amount { get; set; }= 0;
         public decimal total_vat_amount_oc { get; set; } = 0;
         public string employee_code { get; set; }
+        public pu_invoice pu_invoice { get; set; } = null;
         public List<pu_voucher_detail> detail { get; set; }
 
 

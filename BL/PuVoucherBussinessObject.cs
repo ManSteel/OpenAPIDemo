@@ -87,9 +87,16 @@ namespace WindowsFormsApp1.BL
             obj3.account_object_name = "Nguyễn Văn Toàn";
             obj3.is_vendor = true;
 
+            account_object obj4 = new account_object(); //Nhà cung cấp
+            obj4.account_object_id = Guid.NewGuid();
+            obj4.account_object_code = "NCC00002";
+            obj4.account_object_name = "Kiều Đức Long";
+            obj4.is_vendor = true;
+
             lstDictionary.Add(obj1);
             lstDictionary.Add(obj2);
             lstDictionary.Add(obj3);
+            lstDictionary.Add(obj4);
 
 
             dataVoucher.dictionary = lstDictionary;
@@ -123,31 +130,48 @@ namespace WindowsFormsApp1.BL
             // *Note* Demo nên fix cứng dữ liệu - thực tế dựa vào orgData để sinh ra dữ liệu
             var voucherData = (pu_voucher)voucher;
             voucherData.org_refid = Guid.NewGuid().ToString();
-            voucherData.org_refno = "PMH00000184"; //Số đơn hàng gốc trên ứng dụng thứ 3 (mỗi lần test đổi lại số đơn hàng khác)
-            voucherData.refno_finance = "PMH00000184";
+            voucherData.org_refno = "PMH00000191"; //Số đơn hàng gốc trên ứng dụng thứ 3 (mỗi lần test đổi lại số đơn hàng khác)
+            voucherData.refno_finance = "PMH00000191";
             voucherData.refid = Guid.NewGuid();
             voucherData.refdate = DateTime.Now; // gắn lại theo ngày đơn hàng bên ứng dụng thứ 3, code demo gán = DateTime.Now
             voucherData.posted_date = DateTime.Now;
             voucherData.caba_posted_date = DateTime.Now;
             voucherData.caba_refdate = DateTime.Now;
-            voucherData.in_reforder = DateTime.Now;
-
-
-            voucherData.include_invoice = 0; // Mua hàng không kèm hóa đơn
-            if(voucherData.include_invoice == 1)
-            {
-                //TODO Nếu là mua hàng kèm hóa đơn thì phải khởi tạo thông tin hóa đơn mua hàng
-            }
+            voucherData.in_reforder = DateTime.Now;            
             voucherData.paid_status = 0;
 
 
             voucherData.account_object_id = Guid.Empty;
-            voucherData.account_object_code = "KH00001";
-            voucherData.account_object_name = "Lê Đình Long"; // thông tin khách hàng
+            voucherData.account_object_code = "NCC00001";
+            voucherData.account_object_name = "Nguyễn Văn Toàn"; // thông tin nhà cung cấp
+
+            voucherData.account_object_contact_name = "CR7"; //người giao hàng
+            voucherData.account_object_address = "Hà Đông - HN"; //Địa chỉ
 
             voucherData.employee_code = "NV00001";
             voucherData.employee_name = "Bùi Trung Tú";
             voucherData.employee_id = Guid.Empty;
+
+            voucherData.include_invoice = 1; // Mua hàng không kèm hóa đơn
+
+            if (voucherData.include_invoice == 1)
+            {
+                //TODO Nếu là mua hàng kèm hóa đơn thì khởi tạo thông tin hóa đơn mua hàng (Chính là tab hóa đơn chứng từ mua hàng)
+                pu_invoice puInvoice = new pu_invoice();
+                puInvoice.refid = Guid.NewGuid();
+                puInvoice.account_object_code = voucherData.account_object_code;
+                puInvoice.account_object_name = voucherData.account_object_name;
+                puInvoice.account_object_tax_code = "1041060248";
+                puInvoice.account_object_address = "Hà Nội";
+                puInvoice.inv_template_no = "";
+                puInvoice.inv_series = "";
+                puInvoice.inv_date = DateTime.Now;
+                puInvoice.inv_no = "0157";
+                puInvoice.refdate = puInvoice.inv_date;
+                puInvoice.posted_date = puInvoice.inv_date;
+                voucherData.pu_invoice_refid = puInvoice.refid;
+                voucherData.pu_invoice = puInvoice;
+            }
         }
 
         /// <summary>
@@ -250,7 +274,7 @@ namespace WindowsFormsApp1.BL
                 foreach (pu_voucher pVoucher in dataVouchers.voucher)
                 {
                     // Mapping phần thông tin chung bao gồm khách hàng, nhân viên, nhà cung cấp bằng mã đối tượng
-                    // 1.Khách hàng hoặc nhà cung cấp trên chứng từ
+                    // 1.Khách hàng hoặc nhà cung cấp trên chứng từ mua hàng + hóa đơn mua hàng
                     if (pVoucher.account_object_code != null)
                     {
                         var objMapping1 = lstAccountObject.FirstOrDefault(x => x.account_object_code == pVoucher.account_object_code);
@@ -258,6 +282,16 @@ namespace WindowsFormsApp1.BL
                         {
                             pVoucher.account_object_id = objMapping1.account_object_id;
                             pVoucher.account_object_name = objMapping1.account_object_name;
+                        }
+
+                    }
+                    if(pVoucher.pu_invoice?.account_object_code != null)
+                    {
+                        var objMappingInvoice = lstAccountObject.FirstOrDefault(x => x.account_object_code == pVoucher.pu_invoice?.account_object_code);
+                        if (objMappingInvoice != null)
+                        {
+                            pVoucher.pu_invoice.account_object_id = objMappingInvoice.account_object_id;
+                            pVoucher.pu_invoice.account_object_name = objMappingInvoice.account_object_name;
                         }
 
                     }
