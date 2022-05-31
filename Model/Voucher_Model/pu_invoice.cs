@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1.Model.Voucher_Model
 {
+    /// <summary>
+    /// Hóa đơn mua hàng
+    /// </summary>
     public class pu_invoice
     {
         public int? voucher_type { get; set; } = 15;

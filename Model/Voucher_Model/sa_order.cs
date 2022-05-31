@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApp1.Interface;
+using WindowsFormsApp1.Model.Enum;
 
 namespace WindowsFormsApp1.Model.Voucher_Model
 {
@@ -14,9 +15,9 @@ namespace WindowsFormsApp1.Model.Voucher_Model
     public class sa_order: VoucherObject
     {
         public int voucher_type { get; set; } = 20;
-        public int org_reftype { get; set; } = 3520;
+        public int org_reftype { get; set; } = (int)EnumReftype.SaOrder;
         public string org_reftype_name { get; set; } = "Đơn đặt hàng";
-        public int reftype { get; set; } = 3520;
+        public int reftype { get; set; } = (int)EnumReftype.SaOrder;
 
         /// <summary>
         /// Địa chỉ giao hàng
