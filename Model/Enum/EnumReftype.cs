@@ -139,8 +139,14 @@ namespace WindowsFormsApp1.Model.Enum
         /// Mua hàng nhập khẩu không qua kho - Séc tiền mặt
         /// </summary>
         PuVoucher328 = 328,
-
-
+        /// <summary>
+        /// Phiếu thu tiền mặt khách hàng
+        /// </summary>
+        CaReceipt = 1010,
+        /// <summary>
+        /// Phiếu thu tiền gửi khách hàng
+        /// </summary>
+        BaDeposit = 1500
 
     }
 }

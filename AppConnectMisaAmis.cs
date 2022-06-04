@@ -166,6 +166,8 @@ namespace WindowsFormsApp1
             //Mapping thông tin danh mục và chứng từ
             voucherBussiness.MappingIdObjectVoucher(dataVoucher);
 
+
+            this.textBoxParam.Text = JsonConvert.SerializeObject(dataVoucher);
             //Đẩy dữ liệu qua API sang Amis Kế toán
             SaveVoucherCallAPI(dataVoucher);
 
@@ -207,6 +209,12 @@ namespace WindowsFormsApp1
                     break;
                 case "Chứng từ mua hàng":
                     voucherBussiness = new PuVoucherBussinessObject();
+                    break;
+                case "Phiếu thu tiền mặt":
+                    voucherBussiness = new CAReceiptBussinessObject();
+                    break;
+                case "Thu tiền chuyển khoản":
+                    voucherBussiness = new BADepositBussinessObject();
                     break;
                 default:
                     break;

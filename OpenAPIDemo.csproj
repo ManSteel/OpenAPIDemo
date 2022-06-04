@@ -55,6 +55,8 @@
     <Compile Include="AppConnectMisaAmis.Designer.cs">
       <DependentUpon>AppConnectMisaAmis.cs</DependentUpon>
     </Compile>
+    <Compile Include="BL\BADepositBussinessObject.cs" />
+    <Compile Include="BL\CAReceiptBussinessObject.cs" />
     <Compile Include="BL\PuVoucherBussinessObject.cs" />
     <Compile Include="BL\SaOrderBussinesObject.cs" />
     <Compile Include="BL\SaVoucherBussinessObject.cs" />
@@ -77,6 +79,10 @@
     <Compile Include="Model\OriginData.cs" />
     <Compile Include="Model\VoucherData.cs" />
     <Compile Include="Model\VoucherRequestParam.cs" />
+    <Compile Include="Model\Voucher_Model\ba_deposit.cs" />
+    <Compile Include="Model\Voucher_Model\ba_deposit_detail.cs" />
+    <Compile Include="Model\Voucher_Model\ca_receipt.cs" />
+    <Compile Include="Model\Voucher_Model\ca_receipt_detail.cs" />
     <Compile Include="Model\Voucher_Model\in_outward.cs" />
     <Compile Include="Model\Voucher_Model\pu_invoice.cs" />
     <Compile Include="Model\Voucher_Model\pu_voucher.cs" />
