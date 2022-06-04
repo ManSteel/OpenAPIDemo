@@ -34,6 +34,7 @@ namespace WindowsFormsApp1
             _baseUrl = "https://actapp.misa.vn"; // Môi trường chính thức
             _appId = "00000000-0000-0000-0000-000000001002"; // app_id
             //_baseUrl = "https://testactapp.misa.vn"; // Môi trường test
+            //_appId = "0e0a14cf-9e4b-4af9-875b-c490f34a581b"; // app_id
 
         }
 
@@ -53,12 +54,12 @@ namespace WindowsFormsApp1
         {
             try
             {
+                string connectSetting = System.IO.File.ReadAllText($"{_urlStorage}\\app_setting.json");
+                var param = JsonConvert.DeserializeObject<ConnectParam>(connectSetting);
                 //ConnectParam param = new ConnectParam();
                 //param.app_id = "0e0a14cf-9e4b-4af9-875b-c490f34a581b";
                 //param.access_code = "YXmnj0/VIKq773xjxH0EzbjWOGoGKBs6P/v9BazCqYsZxyuGjPSkp2FZqwAEEuWACJ0eW002315ddR0jjR2GoaZ69JvB0hn1koATFaJ6/DrfKuPh7WnyjAGNPzJnQu9oN6bwyGnbN005jyMAWH4gt5SvTCsPvPl12eNYjmRkUlDOdZ7DADQAdB9OGgX0BLPTy/cyVDx6U055DDjw/O00MToMzT6yYwRQ/uJONwFAmGdWahMWOvTQy5TGR+jLtMFj";
                 //param.org_company_code = "misa";
-                string connectSetting = System.IO.File.ReadAllText($"{_urlStorage}\\app_setting.json");
-                var param = JsonConvert.DeserializeObject<ConnectParam>(connectSetting);
                 HttpClient client = new HttpClient();
                 Uri uri = new Uri($"{_baseUrl}/api/oauth/actopen/connect");
                 StringContent httpContent = new StringContent(JsonConvert.SerializeObject(param), Encoding.UTF8, "application/json");
