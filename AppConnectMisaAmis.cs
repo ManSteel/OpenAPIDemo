@@ -31,10 +31,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             _client = new HttpClient();
-            _baseUrl = "https://actapp.misa.vn"; // Môi trường chính thức
-            _appId = "00000000-0000-0000-0000-000000001002"; // app_id
-            //_baseUrl = "https://testactapp.misa.vn"; // Môi trường test
-            //_appId = "0e0a14cf-9e4b-4af9-875b-c490f34a581b"; // app_id
+            _baseUrl = "https://testactapp.misa.vn"; // Môi trường test
+            _appId = "0e0a14cf-9e4b-4af9-875b-c490f34a581b"; // app_id
 
         }
 
